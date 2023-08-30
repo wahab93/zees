@@ -17,7 +17,7 @@ export const Products = () => {
             // find the duplicates and make them unique 
             const uniqlist = [...new Set(data.map((e) => {
                 return e.category;
-            })),'ALL']
+            })), 'ALL']
             setProductcat(uniqlist)
             // check if the filtered products array is empty then send all data to the product data
             if (productdata.length === 0) {
@@ -30,7 +30,7 @@ export const Products = () => {
 
     // Filter Products
     const filterProducts = (cat) => {
-        if(cat === 'ALL'){
+        if (cat === 'ALL') {
             return setProductdata(data)
         }
         const updateList = data.filter((e) => {
@@ -71,7 +71,10 @@ export const Products = () => {
                                         <div className="card h-100 text-center p-4">
                                             <img src={e.image} className="card-img-top" height='200px' alt={e.title} />
                                             <div className="card-body">
-                                                <p className="card-text fw-bold">{e.title.substring(0, 12)}</p>
+                                                <div className='d-flex justify-content-between'>
+                                                    <p className="card-text fw-bold">{e.title.substring(0, 12)}</p>
+                                                    <p className="card-text fw-bold">${e.price}</p>
+                                                </div>
                                                 <Link to={`/products/${e.id}`} className="primary-btn">Buy Now</Link>
                                             </div>
                                         </div>
