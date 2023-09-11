@@ -42,7 +42,7 @@ export const Login = () => {
                 <div className='row justify-content-center'>
                     <div className="col-md-6 bg-light p-5 my-5 shadow">
                         <h2 className='text-center'>Please Login</h2>
-                        <form className=''>
+                        <form className='' onSubmit={loginUser}>
                             <div className='mb-3'>
                                 <label htmlFor="" className='form-label'>Email</label>
                                 <input className='form-control' type="email" placeholder='Enter Your Email'
@@ -61,7 +61,7 @@ export const Login = () => {
                                 />
                             </div>
                             <div className="d-flex justify-content-between align-items-center mt-4">
-                                <Link type="submit" className="primary-btn w-25 ms-0" onClick={loginUser}>Login</Link>
+                                <button type="submit" className="primary-btn w-25 ms-0 border-0 p-0">Login</button>
                                 <span className='d-block'>
                                     Not have Account <span className='mx-2'>|</span>
                                     <Link to='/register'>Register</Link>

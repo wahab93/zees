@@ -40,7 +40,7 @@ export const Register = () => {
                 <div className='row justify-content-center'>
                     <div className="col-md-6 bg-light shadow p-5 my-5">
                         <h4 className='text-center'>Please Register</h4>
-                        <form>
+                        <form onSubmit={registerUser}>
                             <div className='mb-3'>
                                 <label className='form-label' htmlFor="email">Name</label>
                                 <input type='text' placeholder='Enter Your Name'
@@ -71,7 +71,7 @@ export const Register = () => {
                                 />
                             </div>
                             <div className="d-flex justify-content-between align-items-center mt-4">
-                                <Link type="submit" className="primary-btn w-25 ms-0" onClick={registerUser}>Register</Link>
+                            <button type="submit" className="primary-btn w-25 ms-0 border-0 p-0">Register</button>
                                 <span className='d-block'>
                                     Already have Account <span className='mx-2'>|</span>
                                     <Link to='/login'>Login</Link>

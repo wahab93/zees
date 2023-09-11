@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -8,18 +8,6 @@ export const Navbar = () => {
     const stateuser = useSelector((state) => state.userinfihandler.user)
     const disaptch = useDispatch()
     const navigatation = useNavigate();
-
-    useEffect(() => {
-        const payload = localStorage.getItem('loginUser')
-        if (payload) {
-            disaptch({
-                type: 'LOGIN',
-                payload
-            })
-        }
-    }, [])
-
-
     const logOut = (() => {
         disaptch({
             type: 'LOGOUT'
@@ -74,7 +62,7 @@ export const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to='/'>Home</Link>
+                                <Link className="nav-link" to='/'>Home</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to='/aboutus'>About Us</Link>
@@ -89,9 +77,9 @@ export const Navbar = () => {
                         <div className="buttons">
                             {
                                 stateuser ?
-                                    <Link className="cart" onClick={logOut}>
+                                    <a href='#' className="cart" onClick={logOut}>
                                         <i className="fa fa-sign-out"></i>
-                                    </Link>
+                                    </a>
                                     :
                                     <Link to="/login" className="cart">
                                         <i className="fa fa-user"></i>

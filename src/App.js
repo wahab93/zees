@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js'
 import '../node_modules/font-awesome/css/font-awesome.min.css'
@@ -13,22 +12,12 @@ import { Checkout } from './component/checkout';
 import { Register } from './component/register';
 import { Login } from './component/login';
 import { Aboutus } from './component/aboutus';
-import { useDispatch } from 'react-redux'
-import { addCart } from './redux/action'
 import { Footer } from './component/footer'
 import { Contactus } from './component/contactus'
 import ScrollToTop from './component/scrolltotop'
 
 
 function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-   const product = localStorage.getItem('SelectedItem')
-   if(product){
-    dispatch(addCart(product))
-   }
-  }, [])
-  
   return (
     <>
     <Router>
