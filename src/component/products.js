@@ -68,7 +68,7 @@ export const Products = () => {
                             return (
                                 <>
                                     <div className="col-md-3 col-6 designcard" key={e.id}>
-                                        <div className="card h-100 text-center p-4">
+                                        <div className="card h-100 text-center p-md-4">
                                             <img src={e.image} className="card-img-top" height='200px' alt={e.title} />
                                             <div className="card-body">
                                                 <div className='d-flex justify-content-between'>

@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 export const Navbar = () => {
-    debugger
     const state = useSelector((state) => state.carthandler)
     const stateuser = useSelector((state) => state.userinfihandler.user)
     const disaptch = useDispatch()
