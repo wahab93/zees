@@ -50,7 +50,7 @@ export const Cart = () => {
                 <div className="container py-5 my-5">
                     <div className="row">
                         <h1 className='text-center'>Your Cart is Empty</h1>
-                        <Link to='/products' className="w-25 primary-btn mt-5">Go To Products</Link>
+                        <Link to='/products' className="primary-btn mt-5" style={{width:'200px'}}>Go To Products</Link>
                     </div>
                 </div>
             </>
