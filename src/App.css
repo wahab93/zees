@@ -98,6 +98,28 @@ h6 {
 }
 
 
+.heart span {
+  position: absolute;
+  top: 12px;
+  background-color: tan;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  font-weight: 500;
+  display: grid;
+  place-items: center;
+  border: 1px solid #fff;
+}
+
+.buttons i{
+  color: #535353;
+  font-size: 17px;
+}
+.fas.fa-heart{
+  color: tan;
+}
+
 img {
   object-fit: contain;
 }
@@ -110,6 +132,15 @@ img {
 .header_top ul li a,
 .header_top ul li i {
   color: #fff;
+}
+
+
+.designcard .fa-heart {
+  position: absolute;
+  font-size: 20px;
+  right: 0;
+  top: 0;
+  z-index: 1;
 }
 
 @media screen and (max-width:992px) {
@@ -166,7 +197,7 @@ img {
 }
 
 
-.productadded:nth-child(even){
+.productadded:nth-child(even) {
   border-left: 1px solid lightgrey;
 }
 

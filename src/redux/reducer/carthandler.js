@@ -2,7 +2,6 @@ const carthandler = (state = [], action) => {
     const product = action.payload
     switch (action.type) {
         case "ADDITEM":
-            debugger
             // check if product is already exist
             const exist = state.find((x) => x.id === product.id)
             if (exist) {

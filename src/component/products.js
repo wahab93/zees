@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { ProductCard } from './productCard'
+import { useDispatch } from 'react-redux'
+import { addCart, addFav, removeFav } from '../redux/action'
 
 export const Products = () => {
     const [data, setdata] = useState([])
     const [productcat, setProductcat] = useState([])
     const [productdata, setProductdata] = useState([])
     const state = useSelector((state) => state.carthandler)
-    // console.log(state);
+    const favproduct = useSelector((state) => state.favhandler)
+    const dispatch = useDispatch()
+
     useEffect(() => {
         const getproducts = async () => {
             // getting the data from API
@@ -38,6 +42,37 @@ export const Products = () => {
         })
         setProductdata(updateList)
     }
+    // checl if product is already in cart
+    const isProductInCart = (id) => {
+        if (state.length === 0) {
+            return false;
+        }
+        return state.some((e) => e.id === id);
+    };
+
+    // add product in card and dispatch
+    const addProduct = (product) => {
+        dispatch(addCart(product));
+    };
+    // add product in card and dispatch
+    const addProductFav = (product) => {
+        const isFavorite = isFavProductInCart(product.id);
+
+        if (isFavorite) {
+            // Product is already in favorites, remove it
+            dispatch(removeFav(product));
+        } else {
+            // Product is not in favorites, add it
+            dispatch(addFav(product));
+        }
+    };
+    // checl if product is already in cart
+    const isFavProductInCart = (id) => {
+        if (favproduct.length === 0) {
+            return false;
+        }
+        return favproduct.some((e) => e.id === id);
+    };
 
     return (
         <>
@@ -64,21 +99,13 @@ export const Products = () => {
                     </div>
                     {/* Products */}
                     {
-                        productdata.map((e) => {
+                        productdata.map((product) => {
+                            const { id } = product;
+                            const productIsInCart = isProductInCart(id);
+                            const favProductIsInCart = isFavProductInCart(id);
                             return (
                                 <>
-                                    <div className="col-md-3 col-6 designcard" key={e.id}>
-                                        <div className="card h-100 text-center p-md-4">
-                                            <img src={e.image} className="card-img-top" height='200px' alt={e.title} />
-                                            <div className="card-body">
-                                                <div className='d-flex justify-content-between'>
-                                                    <p className="card-text fw-bold">{e.title.substring(0, 12)}</p>
-                                                    <p className="card-text fw-bold">${e.price}</p>
-                                                </div>
-                                                <Link to={`/products/${e.id}`} className="primary-btn">Buy Now</Link>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <ProductCard key={product.id} favProductIsInCart={favProductIsInCart} addProductFav={addProductFav} addProduct={addProduct} product={product} productIsInCart={productIsInCart} />
                                 </>
                             )
                         })

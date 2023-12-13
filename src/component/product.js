@@ -10,7 +10,6 @@ export const Product = () => {
 
     const dispatch = useDispatch()
     const addProduct = (product) => {
-        debugger
         dispatch(addCart(product))
         setToggle(true)
     }

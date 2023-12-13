@@ -1,19 +1,24 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { delFav } from '../redux/action'
 
 export const Navbar = () => {
     const state = useSelector((state) => state.carthandler)
     const stateuser = useSelector((state) => state.userinfihandler.user)
-    const disaptch = useDispatch()
+    const favproduct = useSelector((state) => state.favhandler)
+    const dispatch = useDispatch()
     const navigatation = useNavigate();
     const logOut = (() => {
-        disaptch({
+        dispatch({
             type: 'LOGOUT'
         })
         localStorage.removeItem('loginUser');
         navigatation('/login')
     })
+    const handleDel = (e) => {
+        dispatch(delFav(e))
+    }
 
     return (
         <>
@@ -74,24 +79,78 @@ export const Navbar = () => {
                             </li>
                         </ul>
                         <div className="buttons">
+                            <Link className='heart'>
+                                {favproduct.length != 0 ?
+                                    <i className='fas fa-heart position-relative' data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"></i>
+                                    :
+                                    <i className='fa-regular fa-heart position-relative' data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"></i>
+                                }
+                                {favproduct.length != 0 ? <span> {favproduct.length}</span> : ''}
+                            </Link>
                             {
                                 stateuser ?
-                                    <a href='#' className="cart" onClick={logOut}>
+                                    <a href='#' className="cart mx-3" onClick={logOut}>
                                         <i className="fa fa-sign-out"></i>
                                     </a>
                                     :
-                                    <Link to="/login" className="cart">
+                                    <Link to="/login" className="cart mx-3">
                                         <i className="fa fa-user"></i>
                                     </Link>
                             }
-                            <Link to="/cart" className='cart ms-2 shpcart'>
+                            <Link to="/cart" className='cart shpcart'>
                                 <i className="fa fa-shopping-cart"></i>
-                                <span>{state.length}</span>
+                                {state.length != 0 ? <span>{state.length}</span> : ''}
                             </Link>
                         </div>
                     </div>
                 </div>
             </nav>
+            <div className="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                <div className="offcanvas-header">
+                    <h5 className="offcanvas-title" id="offcanvasExampleLabel">Favorite Products</h5>
+                    <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div className="offcanvas-body">
+                    {
+                        favproduct.length == 0 ?
+                            <h3>No Products</h3>
+                            :
+                            (
+                                <>
+                                    <span className='mb-3'><b>Total Favorite Product</b> :{favproduct.length}</span>
+                                    <table className="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Product Name</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                favproduct.map((e, i) => {
+                                                    return (
+                                                        <>
+                                                            <tr key={i}>
+                                                                <th scope="row">{e.title}</th>
+                                                                <td>{e.price}</td>
+                                                                <td>
+                                                                    <Link className='' onClick={() => handleDel(e)}>
+                                                                        <i className='fas fa-trash-alt text-danger'></i>
+                                                                    </Link>
+                                                                </td>
+                                                            </tr>
+                                                        </>
+                                                    )
+                                                })
+                                            }
+                                        </tbody>
+                                    </table>
+                                </>
+                            )
+                    }
+                </div>
+            </div>
         </>
     )
 }
