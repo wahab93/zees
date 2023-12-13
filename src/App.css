@@ -83,27 +83,16 @@ h6 {
 }
 
 .cart span {
-  position: absolute;
-  top: 12px;
-  right: 2px;
-  background-color: tan;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  color: #fff;
-  font-weight: 500;
-  display: grid;
-  place-items: center;
-  border: 1px solid #fff;
+  top: 10px;
+  right: 0px;
 }
 
-
+.cart span,
 .heart span {
   position: absolute;
-  top: 12px;
   background-color: tan;
-  border-radius: 50%;
-  width: 20px;
+  border-radius: 10px;
+  width: 26px;
   height: 20px;
   color: #fff;
   font-weight: 500;
@@ -112,11 +101,16 @@ h6 {
   border: 1px solid #fff;
 }
 
-.buttons i{
+.heart span {
+  top: 10px;
+}
+
+.buttons i {
   color: #535353;
   font-size: 17px;
 }
-.fas.fa-heart{
+
+.fas.fa-heart {
   color: tan;
 }
 

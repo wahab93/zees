@@ -24,11 +24,11 @@ export const Cart = () => {
                     <button className='btn-close float-end' onClick={() => handleclose(cartItems)}></button>
                     <div className="row align-items-center">
                         <div className="col-md-4">
-                            <img src={image} alt={title} className='img-fluid mt-5 mt-md-0' />
+                            <img src={image} alt={title} width={'100px'} height={'200px'}  className='mt-5 mt-md-0' />
                         </div>
                         <div className="col-md-8">
-                            <h4>{title}</h4>
-                            <p className='lead fw-bolder'> {qty} X {price} = ${qty * price}</p>
+                            <h4>{title.substring(0, 50)}</h4>
+                            <p className='lead fw-bolder'> {qty} X {price} = ${(qty * price).toFixed(2)}</p>
                             <div className='d-flex counterbtn'>
                                 <Link className='primary-btn ms-0 me-0' onClick={() => handleDel(cartItems)}>
                                     <i className='fa fa-minus'></i>
