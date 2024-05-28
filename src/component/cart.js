@@ -1,13 +1,13 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { delCart, addCart } from '../redux/action/index'
+import { delCart, addCart, CLEAR_CART } from '../redux/action/index'
 import { Link } from 'react-router-dom'
 
 export const Cart = () => {
     const state = useSelector((state) => state.carthandler)
     const dispatch = useDispatch()
     const handleclose = (e) => {
-        dispatch(delCart(e))
+        dispatch(CLEAR_CART(e))
     }
     const handleAdd = (e) => {
         dispatch(addCart(e))

@@ -47,3 +47,10 @@ export const CLEAR_FAV = (product) => {
         type: "CLEAR_FAV",
     }
 }
+
+
+export const CLEAR_CART = (product) => {
+    return {
+        type: "CLEAR_CART",
+    }
+}

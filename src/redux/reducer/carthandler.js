@@ -21,13 +21,15 @@ const carthandler = (state = [], action) => {
             const exit1 = state.find((x) => x.id === product.id);
             if (exit1.qty === 1) {
                 return state.filter((x) => x.id !== exit1.id);
-            } 
+            }
             else {
                 return state.map((x) =>
                     x.id === product.id ? { ...x, qty: x.qty - 1 } : x
                 );
             }
-            break;
+        case "CLEAR_CART":
+            // Clear the cart by returning an empty array
+            return [];
         default:
             return state
             break;
