@@ -16,6 +16,15 @@ export const delCart = (product) => {
 }
 
 
+// delete complete product when click on delete
+export const delProductCart = (product) => {
+    return {
+        type: "DELETE_PRODUCT_FROM_CART",
+        payload: product // Pass the entire product object to the reducer
+    };
+};
+
+
 
 // For Add To cart
 export const addFav = (product) => {

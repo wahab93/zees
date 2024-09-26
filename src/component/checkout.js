@@ -11,7 +11,7 @@ export const Checkout = () => {
         return (
             <>
                 <li className="list-group-item d-flex justify-content-between lh-sm py-4 px-3">
-                    <h6 className="my-0">{e.title} * {e.qty}</h6>
+                    <h6 className="my-0">{e.title.substring(0,12)} * {e.qty}</h6>
                     <span className="text-muted">${e.price}</span>
                 </li>
             </>
@@ -31,7 +31,7 @@ export const Checkout = () => {
                             {state.map(itemList)}
                             <li className="list-group-item d-flex justify-content-between">
                                 <span>Total (USD)</span>
-                                <strong>${total}</strong>
+                                <strong>${total.toFixed(2)}</strong>
                             </li>
                         </ul>
                         <Link to='/cart' className="w-50 primary-btn mt-5 me-0">Back to Cart</Link>

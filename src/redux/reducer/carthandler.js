@@ -27,6 +27,9 @@ const carthandler = (state = [], action) => {
                     x.id === product.id ? { ...x, qty: x.qty - 1 } : x
                 );
             }
+        case "DELETE_PRODUCT_FROM_CART":
+            // Filter out the product from the cart
+            return state.filter((product) => product.id !== action.payload.id);
         case "CLEAR_CART":
             // Clear the cart by returning an empty array
             return [];

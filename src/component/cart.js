@@ -1,39 +1,33 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { delCart, addCart, CLEAR_CART } from '../redux/action/index'
+import { delCart, addCart, delProductCart } from '../redux/action/index'
 import { Link } from 'react-router-dom'
 
 export const Cart = () => {
     const state = useSelector((state) => state.carthandler)
     const dispatch = useDispatch()
-    const handleclose = (e) => {
-        dispatch(CLEAR_CART(e))
-    }
-    const handleAdd = (e) => {
-        dispatch(addCart(e))
-    }
-    const handleDel = (e) => {
-        dispatch(delCart(e))
-    }
+    const handleclose = (product) => dispatch(delProductCart(product))
+    const handleAdd = (product) => dispatch(addCart(product))
+    const handleDel = (product) => dispatch(delCart(product))
 
-    const cartItems = ((cartItems) => {
-        const { id, image, title, price, qty } = cartItems
+    const cartItems = ((product) => {
+        const { id, image, title, price, qty } = product
         return (
             <>
                 <div className="col-md-6 productadded" key={id}>
-                    <button className='btn-close float-end' onClick={() => handleclose(cartItems)}></button>
+                    <button className='btn-close float-end' onClick={() => handleclose(product)}></button>
                     <div className="row align-items-center">
                         <div className="col-md-4">
-                            <img src={image} alt={title} width={'100px'} height={'200px'}  className='mt-5 mt-md-0' />
+                            <img src={image} alt={title} width={'100px'} height={'200px'} className='mt-5 mt-md-0' />
                         </div>
                         <div className="col-md-8">
                             <h4>{title.substring(0, 50)}</h4>
                             <p className='lead fw-bolder'> {qty} X {price} = ${(qty * price).toFixed(2)}</p>
                             <div className='d-flex counterbtn'>
-                                <Link className='primary-btn ms-0 me-0' onClick={() => handleDel(cartItems)}>
+                                <Link className='primary-btn ms-0 me-0' onClick={() => handleDel(product)}>
                                     <i className='fa fa-minus'></i>
                                 </Link>
-                                <Link className='primary-btn ms-2' onClick={() => handleAdd(cartItems)}>
+                                <Link className='primary-btn ms-2' onClick={() => handleAdd(product)}>
                                     <i className='fa fa-plus'></i>
                                 </Link>
                             </div>
@@ -50,7 +44,7 @@ export const Cart = () => {
                 <div className="container py-5 my-5">
                     <div className="row">
                         <h1 className='text-center'>Your Cart is Empty</h1>
-                        <Link to='/products' className="primary-btn mt-5" style={{width:'200px'}}>Go To Products</Link>
+                        <Link to='/products' className="primary-btn mt-5" style={{ width: '200px' }}>Go To Products</Link>
                     </div>
                 </div>
             </>
